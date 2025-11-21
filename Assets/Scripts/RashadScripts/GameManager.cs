@@ -11,19 +11,24 @@ public class GameManager : MonoBehaviour
     [Tooltip("Maximum number of sides (Tridecagon).")]
     public int maxSides = 13;
 
+    [Header("Custom Radius Settings")]
+    [Tooltip("The radius of the Base Shape.")]
+    public float baseShapeRadius = 5f;
+    [Tooltip("The factor by which the radius shrinks each phase (e.g., 0.95 = 5% shrink).")]
+    public float shrinkFactor = 0.95f;
+
     [Header("References")]
-    public BaseShapeManager shapeManager; // Reference to the shape script
+    public BaseShapeManager shapeManager;
 
     private float survivalTimer = 0f;
     private int currentPhase = 0;
     private float nextShapeTime;
 
-    // Static property for other scripts to read the current game state
     public static int CurrentSides { get; private set; }
 
     void Start()
     {
-        // Safety check
+        // 1. Initial Setup and Safety Check
         if (shapeManager == null)
         {
             Debug.LogError("BaseShapeManager reference is missing on GameManager!");
@@ -31,9 +36,11 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // Initialize the game state
+        // 2. Initialize the game state
         CurrentSides = startingSides;
-        shapeManager.GenerateNewShape(CurrentSides);
+
+        // Use the new method signature to set the initial shape and radius
+        shapeManager.GenerateNewShape(CurrentSides, baseShapeRadius);
         nextShapeTime = timeToNextShape;
 
         Debug.Log("Game Started. Current Shape: Triangle.");
@@ -48,12 +55,12 @@ public class GameManager : MonoBehaviour
         if (survivalTimer >= nextShapeTime)
         {
             ProgressToNextShape();
-            nextShapeTime = survivalTimer + timeToNextShape; // Set the next trigger time
+            nextShapeTime = survivalTimer + timeToNextShape;
         }
     }
 
     /// <summary>
-    /// Changes the base shape to the next level of difficulty.
+    /// Changes the base shape to the next level of difficulty (a. & b.)
     /// </summary>
     public void ProgressToNextShape()
     {
@@ -62,20 +69,34 @@ public class GameManager : MonoBehaviour
             CurrentSides++;
             currentPhase++;
 
-            // Seamlessly trigger the shape change
-            shapeManager.GenerateNewShape(CurrentSides);
+            // Calculate the new radius, shrinking it based on the number of phases passed.
+            // This progressively reduces the player's available movement distance.
+            float newRadius = baseShapeRadius * Mathf.Pow(shrinkFactor, currentPhase);
 
-            // Optional: Trigger color cycle logic here for advanced feature
-            // You can call your Hue/Color Cycling System script here
-            // Example: GetComponent<ColorCycleManager>().ShiftPalette(CurrentSides);
+            // Trigger the shape change and smooth resize
+            shapeManager.GenerateNewShape(CurrentSides, newRadius);
 
-            Debug.Log($"PROGRESSION: Shape changed to {CurrentSides} sides (Phase {currentPhase + 1}).");
+            // Optional: You can also increase the rotation speed here for difficulty scaling
+            shapeManager.rotationSpeed *= 1.05f;
+
+            Debug.Log($"PROGRESSION: Shape changed to {CurrentSides} sides (Phase {currentPhase + 1}). New Radius: {newRadius:F2}");
         }
         else
         {
-            // Optional: Once max sides is reached, increase rotation speed or complexity
+            // Once max sides is reached, only speed and rotation increase
             Debug.Log("MAX SIDES REACHED. Increasing difficulty parameters...");
-            shapeManager.rotationSpeed *= 1.1f; // Example of speed tuning (for Challenge Variety)
+            shapeManager.rotationSpeed *= 1.1f;
         }
+    }
+
+    // Public method to reset the game state on Game Over (Ahmad's task)
+    public void ResetGame()
+    {
+        survivalTimer = 0f;
+        currentPhase = 0;
+        CurrentSides = startingSides;
+        nextShapeTime = timeToNextShape;
+        shapeManager.rotationSpeed = 100f; // Reset to initial speed
+        shapeManager.GenerateNewShape(CurrentSides, baseShapeRadius);
     }
 }

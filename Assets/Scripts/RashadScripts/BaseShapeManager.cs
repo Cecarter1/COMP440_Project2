@@ -1,64 +1,107 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(LineRenderer))]
 public class BaseShapeManager : MonoBehaviour
 {
     [Header("Shape Properties")]
-    public float shapeRadius = 5f;
+    public float targetRadius = 2f; // The ultimate radius the shape should be
     public float rotationSpeed = 100f; // Degrees per second
+    public float resizeDuration = 0.5f; // Time for the shape to smoothly resize
+
+    // Public list of calculated snap points (for Player integration)
+    public List<Vector3> SnapPoints { get; private set; } = new List<Vector3>();
 
     private LineRenderer lineRenderer;
     private int currentSides = 0;
+    private float currentRadius; // The radius used for calculation
+    private float resizeStartTime;
+    private float initialRadius;
 
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        // Set up LineRenderer for a continuous loop
         lineRenderer.loop = true;
+        currentRadius = targetRadius; // Start at target radius
     }
 
     void Update()
     {
-        // Continuous rotation (3b)
+        // Continuous rotation
         transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+
+        // Handle smooth resizing if targetRadius is different from currentRadius
+        if (currentRadius != targetRadius)
+        {
+            SmoothResize();
+        }
+
+        // Re-calculate the geometry every frame if resizing, or whenever the shape changes.
+        // This ensures the player SnapPoints are updated as the size changes.
+        if (currentSides > 0)
+        {
+            CalculateVertices(currentSides, currentRadius);
+        }
     }
 
     /// <summary>
-    /// Generates the vertices for a regular N-sided polygon.
+    /// Triggered by GameManager to start the smooth resize and geometry change.
     /// </summary>
-    public void GenerateNewShape(int sides)
+    public void GenerateNewShape(int sides, float newTargetRadius = 5f)
     {
-        if (sides < 3) return;
+        // 1. Store resizing parameters
+        initialRadius = currentRadius;
+        targetRadius = newTargetRadius;
+        resizeStartTime = Time.time;
         currentSides = sides;
 
-        // The number of points is equal to the number of sides (N) plus one more 
-        // to complete the loop, but since LineRenderer.loop is true, we just need N points.
+        // 2. Immediately calculate vertices using the initial radius for a smooth start
+        CalculateVertices(currentSides, initialRadius);
+    }
+
+    /// <summary>
+    /// Smoothly interpolates the current size towards the target size.
+    /// </summary>
+    private void SmoothResize()
+    {
+        float t = (Time.time - resizeStartTime) / resizeDuration;
+
+        // Use an Ease-Out function for a smooth feel
+        t = Mathf.SmoothStep(0f, 1f, t);
+
+        currentRadius = Mathf.Lerp(initialRadius, targetRadius, t);
+
+        if (t >= 1f)
+        {
+            currentRadius = targetRadius;
+        }
+    }
+
+
+    /// <summary>
+    /// Recalculates the shape geometry based on current sides and radius.
+    /// </summary>
+    private void CalculateVertices(int sides, float radius)
+    {
         lineRenderer.positionCount = sides;
+        SnapPoints.Clear();
 
-        Vector3[] vertices = new Vector3[sides];
         float angleStep = 360f / sides;
-
-        // Offset the starting angle so a flat side is at the bottom (optional aesthetic choice)
         float startAngle = 90f;
 
         for (int i = 0; i < sides; i++)
         {
             float currentAngle = startAngle + (i * angleStep);
-            // Convert angle to radians for trigonometric functions
             float angleInRadians = currentAngle * Mathf.Deg2Rad;
 
-            // Calculate vertex position using trigonometry
-            float x = shapeRadius * Mathf.Cos(angleInRadians);
-            float y = shapeRadius * Mathf.Sin(angleInRadians);
+            float x = radius * Mathf.Cos(angleInRadians);
+            float y = radius * Mathf.Sin(angleInRadians);
 
-            // Store the vertex (Z is 0 for 2D plane)
-            vertices[i] = new Vector3(x, y, 0f);
+            Vector3 vertexPosition = new Vector3(x, y, 0f);
+            lineRenderer.SetPosition(i, vertexPosition);
+
+            // Store the snap point (vertex) for the player
+            SnapPoints.Add(vertexPosition);
         }
-
-        lineRenderer.SetPositions(vertices);
-
-        // Notify the player manager (Moises's part) that the snap points have changed
-        // This is a placeholder for team integration:
-        // FindObjectOfType<PlayerMovement>().UpdateSnapPoints(vertices);
     }
 }
