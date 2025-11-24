@@ -1,0 +1,1 @@
+{"highscoreEntryList":[{"name":"For​","grade":"F","score":6200,"finalScore":7000,"maxCombo":2,"accuracy":198.39999389648438},{"name":"thi​","grade":"F","score":5800,"finalScore":6200,"maxCombo":2,"accuracy":162.39999389648438},{"name":"fir​","grade":"F","score":3500,"finalScore":4500,"maxCombo":3,"accuracy":63.0}]}
