@@ -1,1 +1,1 @@
-{"highscoreEntryList":[{"name":"aaa","grade":"n","score":0,"finalScore":0,"maxCombo":0,"accuracy":0},{"name":"aaa​","grade":"n","score":0,"finalScore":0,"maxCombo":0,"accuracy":0},{"name":"aaa","grade":"n","score":0,"finalScore":0,"maxCombo":0,"accuracy":0}]}
+{"highscoreEntryList":[{"name":"ras​","grade":"F","score":2500,"finalScore":2500,"maxCombo":0,"accuracy":71.42857360839844},{"name":"tyu​","grade":"F","score":1600,"finalScore":1600,"maxCombo":0,"accuracy":80.0},{"name":"wer​","grade":"F","score":1400,"finalScore":1400,"maxCombo":0,"accuracy":70.0}]}
