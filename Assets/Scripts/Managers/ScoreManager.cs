@@ -1,3 +1,7 @@
+// Written by Caitlyn Carter
+// Finalized 11/24
+// Score Manager: Tracks the players score and stats, lists them on the gameover menu, and saves adn loads the leaderboard.
+
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.IO;
@@ -26,25 +30,29 @@ public class ScoreManager : MonoBehaviour
     public TMP_Text pointsTxt;
 
     [Header("Score Stats")]
-    public int score = 0; // Score without combo points
-    public int finalScore = 0; // Score with combo points
-    public int maxPoints; // Max amount of points for a song
-    public string grade; // Letter grade for the song
+    [SerializeField] private int score = 0; // Score without combo points
+    [SerializeField] private int finalScore = 0; // Score with combo points
+    [SerializeField] private int maxPoints; // Max amount of points for a song
+    [SerializeField] private string grade; // Letter grade for the song
     public int numPerfect = 0; // Number of perfect passes
     public int numOk = 0; // Number of ok passes
     public int numBad = 0; // Number of bad passes
-    public int maxCombo = 0; // Highest combo achieved
-    public float accuracy; // Accuracy of passes (score of each type of pass/score if each pass were perfect)
+    [SerializeField] private int maxCombo = 0; // Highest combo achieved
+    [SerializeField] private float accuracy; // Accuracy of passes (score of each type of pass/score if each pass were perfect)
 
-    public bool highscoreSet; // Highscore has been made this round
+    [Header("Highscore/Leaderboard Info")]
+    public bool highscoreSet = false; // Highscore has been made this round
     public int highscoreIndex; // Location of highscore on leaderboard
-    public bool nameSet; // Player name has been set on leaderboard
+    public bool nameSet = true; // Player name has been set on leaderboard
+
+    public int comboValue = 200;
 
     private void Start()
     {
         highscores = new List<Highscore>();
         LoadHighscores();
         maxPoints = 1000000;
+        nameSet = true;
     }
 
     // Adds scoreToAdd points to the score and final score
@@ -58,7 +66,7 @@ public class ScoreManager : MonoBehaviour
     // Adds combo points to final score
     public void CalculateCombo(int numCombo)
     {
-        finalScore += numCombo * 200;
+        finalScore += numCombo * comboValue;
 
         if(numCombo > maxCombo)
         {
@@ -96,7 +104,7 @@ public class ScoreManager : MonoBehaviour
         }
 
         // Calculate accuracy
-        accuracy = score / (500.0f * (numPerfect + numOk + numBad));
+        accuracy = score / (500.0f * (numPerfect + numOk + numBad)) * 100;
 
         // Load highscores
         LoadHighscores();
@@ -106,11 +114,24 @@ public class ScoreManager : MonoBehaviour
         {
             if (finalScore > highscores[i].finalScore)
             {
-                highscoreSet = true;
                 highscoreIndex = i;
-                nameSet = false;
                 CreateHighscore();
                 i = highscores.Count;
+            }
+            else if (finalScore == highscores[i].finalScore)
+            {
+                if (accuracy > highscores[i].accuracy)
+                {
+                    highscoreIndex = i;
+                    CreateHighscore();
+                    i = highscores.Count;
+                }
+                else if (accuracy <= highscores[i].accuracy)
+                {
+                    highscoreIndex = i + 1;
+                    CreateHighscore();
+                    i = highscores.Count;
+                }
             }
         }
 
@@ -124,7 +145,7 @@ public class ScoreManager : MonoBehaviour
         scoreTxt.text = "Score\n" + score;
         finalScoreTxt.text = "Final Score\n" + finalScore;
         gradeTxt.text = "Grade\n" + grade;
-        statsTxt.text = numPerfect + "\n" + numOk + "\n" + numBad + "\n" + maxCombo + "\n" + accuracy + "%";
+        statsTxt.text = numPerfect + "\n" + numOk + "\n" + numBad + "\n" + maxCombo + "\n" + string.Format("{0:#.0}", accuracy) + "%";
 
         //Adds empty highscores if there are < 3 leaderboard enteries
         if (highscores.Count < 3)
@@ -168,6 +189,10 @@ public class ScoreManager : MonoBehaviour
         }
 
         highscores[highscoreIndex] = newHighscore;
+
+        nameSet = false;
+        highscoreSet = true;
+        Debug.Log("Highscore!");
     }
 
     // Saves the highscores to a save file using JSon

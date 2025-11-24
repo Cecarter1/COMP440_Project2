@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class TestPlayer : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class TestPlayer : MonoBehaviour
     public int numCombo = 0; // Current number of run
     public ScoreManager scoreManager;
     public TestGameManager gameManager;
+    public int perfectValue = 500;
+    public int okValue = 300;
+    public int badValue = 100;
+    public GameObject perfectEffect, okEffect, badEffect;
 
     private void Update()
     {
@@ -47,11 +52,12 @@ public class TestPlayer : MonoBehaviour
             {
                 gameManager.gameActive = false;
                 gameManager.gameOver = true;
+                gameObject.SetActive(false);
                 scoreManager.GameOver();
             }
             else if (collision.tag == "Perfect")
             {
-                scoreManager.AddScore(500);
+                scoreManager.AddScore(perfectValue);
                 scoreManager.numPerfect++;
                 numCombo += 1;
 
@@ -59,10 +65,11 @@ public class TestPlayer : MonoBehaviour
                 {
                     combo = true;
                 }
+                Instantiate(perfectEffect, transform.position, perfectEffect.transform.rotation);
             }
             else if (collision.tag == "Ok")
             {
-                scoreManager.AddScore(300);
+                scoreManager.AddScore(okValue);
                 scoreManager.numOk++;
 
                 if (combo)
@@ -72,10 +79,11 @@ public class TestPlayer : MonoBehaviour
 
                 combo = false;
                 numCombo = 0;
+                Instantiate(okEffect, transform.position, okEffect.transform.rotation);
             }
             else if (collision.tag == "Bad")
             {
-                scoreManager.AddScore(100);
+                scoreManager.AddScore(badValue);
                 scoreManager.numBad++;
 
                 if (combo)
@@ -85,7 +93,10 @@ public class TestPlayer : MonoBehaviour
 
                 combo = false;
                 numCombo = 0;
+                Instantiate(badEffect, transform.position, badEffect.transform.rotation);
             }
+
+            //passParticles.Play();
         }
     }
 }
