@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class TestHexagon : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     public float shrinkSpeed = 3f;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.rotation = Random.Range(0, 360);
+        transform.localRotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
         transform.localScale = Vector3.one * 10f;
     }
 

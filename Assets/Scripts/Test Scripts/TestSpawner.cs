@@ -6,12 +6,17 @@ public class TestSpawner : MonoBehaviour
     public GameObject hexagonPrefab;
     private float spawnTimer = 1f;
 
+    public TestGameManager gameManager;
+
     private void Update()
     {
-        if (Time.time >= spawnTimer)
+        if (gameManager.gameActive == true && gameManager.gameOver == false)
         {
-            Instantiate(hexagonPrefab, Vector3.zero, Quaternion.identity);
-            spawnTimer = Time.time + 1f / spawnRate;
+            if (Time.time >= spawnTimer)
+            {
+                Instantiate(hexagonPrefab, Vector3.zero, Quaternion.identity);
+                spawnTimer = Time.time + 1f / spawnRate;
+            }
         }
     }
 }

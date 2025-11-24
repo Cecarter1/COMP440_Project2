@@ -1,15 +1,15 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class TestPlayer : MonoBehaviour
 {
     public float moveSpeed = 500f;
     private float movement;
-    public bool combo = false;
-    public int numCombo = 0;
+
+    // Important variables
+    public bool combo = false; // Combo currently happening
+    public int numCombo = 0; // Current number of run
     public ScoreManager scoreManager;
-    public int maxPoints = 0;
+    public TestGameManager gameManager;
 
     private void Update()
     {
@@ -21,61 +21,71 @@ public class TestPlayer : MonoBehaviour
         transform.RotateAround(Vector3.zero, Vector3.forward, movement * Time.fixedDeltaTime * -moveSpeed);
     }
 
+    // IMPORTANT: Adds scoring behavior to collisions
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 6)
+        if (gameManager.gameActive == true && gameManager.gameOver == false)
         {
-            foreach (Transform child in collision.transform.parent)
+            // Deletes Perfect/Ok/Bad colliders
+            if (collision.gameObject.layer == 6)
             {
-                Destroy(child.gameObject);
+                foreach (Transform child in collision.transform.parent)
+                {
+                    Destroy(child.gameObject);
+                }
             }
-            maxPoints += 500;
-        }
-
-        if (collision.tag == "Hexagon")
-        {
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            Debug.Log("Hit");
-        }
-        else if (collision.tag == "Perfect")
-        {
-            Debug.Log("Perfect");
-            scoreManager.AddScore(500);
-            scoreManager.numPerfect++;
-            numCombo += 1;
-
-            if (numCombo > 1)
+            else
             {
-                combo = true;
-            }
-        }
-        else if (collision.tag == "Ok")
-        {
-            Debug.Log("Ok");
-            scoreManager.AddScore(300);
-            scoreManager.numOk++;
-
-            if (combo)
-            {
-                scoreManager.CalculateCombo(numCombo);
+                foreach (Transform child in collision.transform)
+                {
+                    Destroy(child.gameObject);
+                }
             }
 
-            combo = false;
-            numCombo = 0;
-        }
-        else if (collision.tag == "Bad")
-        {
-            Debug.Log("Bad");
-            scoreManager.AddScore(100);
-            scoreManager.numBad++;
-
-            if (combo)
+            // Decides behavior depending on what has been hit
+            if (collision.tag == "Hexagon")
             {
-                scoreManager.CalculateCombo(numCombo);
+                gameManager.gameActive = false;
+                gameManager.gameOver = true;
+                scoreManager.GameOver();
             }
+            else if (collision.tag == "Perfect")
+            {
+                scoreManager.AddScore(500);
+                scoreManager.numPerfect++;
+                numCombo += 1;
 
-            combo = false;
-            numCombo = 0;
+                if (numCombo > 1)
+                {
+                    combo = true;
+                }
+            }
+            else if (collision.tag == "Ok")
+            {
+                scoreManager.AddScore(300);
+                scoreManager.numOk++;
+
+                if (combo)
+                {
+                    scoreManager.CalculateCombo(numCombo);
+                }
+
+                combo = false;
+                numCombo = 0;
+            }
+            else if (collision.tag == "Bad")
+            {
+                scoreManager.AddScore(100);
+                scoreManager.numBad++;
+
+                if (combo)
+                {
+                    scoreManager.CalculateCombo(numCombo);
+                }
+
+                combo = false;
+                numCombo = 0;
+            }
         }
     }
 }
