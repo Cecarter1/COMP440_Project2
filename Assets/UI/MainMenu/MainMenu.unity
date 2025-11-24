@@ -3340,8 +3340,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: HIGH SCORES
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 063d06cf589d0e6428adc42bae643f8f, type: 2}
-  m_sharedMaterial: {fileID: 5703420733366461747, guid: 063d06cf589d0e6428adc42bae643f8f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3569,8 +3569,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: START
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 063d06cf589d0e6428adc42bae643f8f, type: 2}
-  m_sharedMaterial: {fileID: 5703420733366461747, guid: 063d06cf589d0e6428adc42bae643f8f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4276,8 +4276,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Customize Icon
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 063d06cf589d0e6428adc42bae643f8f, type: 2}
-  m_sharedMaterial: {fileID: 5703420733366461747, guid: 063d06cf589d0e6428adc42bae643f8f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4734,8 +4734,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: QUIT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 063d06cf589d0e6428adc42bae643f8f, type: 2}
-  m_sharedMaterial: {fileID: 5703420733366461747, guid: 063d06cf589d0e6428adc42bae643f8f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4873,8 +4873,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Rhythm Run \nHarmonic Hazard"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 063d06cf589d0e6428adc42bae643f8f, type: 2}
-  m_sharedMaterial: {fileID: 5703420733366461747, guid: 063d06cf589d0e6428adc42bae643f8f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5053,8 +5053,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: TRACK SELECT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 063d06cf589d0e6428adc42bae643f8f, type: 2}
-  m_sharedMaterial: {fileID: 5703420733366461747, guid: 063d06cf589d0e6428adc42bae643f8f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
