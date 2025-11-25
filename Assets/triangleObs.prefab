@@ -71,8 +71,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.5, y: 0.82}
-  - {x: -0.3, y: 0.82}
+  - {x: 0.34626058, y: 0.95456374}
+  - {x: 0.631342, y: 1.4269419}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -114,8 +114,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.3, y: 0.82}
-  - {x: 0.5, y: 0.82}
+  - {x: 1.7493355, y: 3.3628774}
+  - {x: 2.0016582, y: 3.8076196}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 462368509042950269}
   - component: {fileID: 559576526347572651}
   - component: {fileID: 2192174037491390452}
+  - component: {fileID: 913024370710236764}
   m_Layer: 0
   m_Name: triangleObs
   m_TagString: Untagged
@@ -339,6 +340,50 @@ MonoBehaviour:
   destroyScale: 1.73
   centerShape: {fileID: 0}
   lanes: 3
+--- !u!68 &913024370710236764
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4385668245091891221}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.88955563, y: -0.46148485}
+  - {x: 0.7974656, y: -0.4598453}
+  - {x: -0.04456903, y: 1.0040581}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &5241852253692759477
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,8 +454,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.02, y: 0.78}
-  - {x: 0.02, y: 0.78}
+  - {x: 1.3348, y: 2.6223793}
+  - {x: 1.1374359, y: 2.3199453}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -513,8 +558,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.2, y: 0.8}
-  - {x: -0.1, y: 0.8}
+  - {x: 1.0579989, y: 2.1673903}
+  - {x: 0.7629752, y: 1.6386659}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -556,8 +601,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.1, y: 0.8}
-  - {x: 0.2, y: 0.8}
+  - {x: 1.4370037, y: 2.7568874}
+  - {x: 1.6800833, y: 3.2268407}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0

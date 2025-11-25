@@ -171,7 +171,7 @@ public class ScoreManager : MonoBehaviour
             leaderboardEntries[i].Find("Grade").GetComponent<TMP_Text>().text = highscores[i].grade;
             leaderboardEntries[i].Find("Final Score").GetComponent<TMP_Text>().text = highscores[i].finalScore.ToString();
             leaderboardEntries[i].Find("Combo").GetComponent<TMP_Text>().text = highscores[i].maxCombo.ToString();
-            leaderboardEntries[i].Find("Accuracy").GetComponent<TMP_Text>().text = highscores[i].accuracy.ToString();
+            leaderboardEntries[i].Find("Accuracy").GetComponent<TMP_Text>().text = string.Format("{0:#.0}", highscores[i].accuracy.ToString()) + "%";
         }
 
         gameoverPane.gameObject.SetActive(true);
