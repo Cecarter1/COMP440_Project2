@@ -486,7 +486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   spawnRate: 1
-  triPrefab: {fileID: 4385668245091891221, guid: 250e497519b388c49aca8f3f6f1ad668, type: 3}
+  triPrefab: {fileID: 4385668245091891221, guid: db41eca5a421eab49b430f1d395bf634, type: 3}
   minScaleToSpawnNext: 10
 --- !u!4 &1265834904
 Transform:
