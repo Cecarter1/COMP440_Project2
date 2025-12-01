@@ -1,6 +1,6 @@
 using UnityEngine;
-using System.Linq; 
-using System.Collections; 
+using System.Linq;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +8,14 @@ public class GameManager : MonoBehaviour
     [Header("Game State")]
     public bool gameActive = true;
     public bool gameOver = false;
+
+    // FIX: Added public property to broadcast the active mode to the Spawner/Obstacles
+    [HideInInspector] // Hide in inspector since we don't change this manually
+    public GameMode currentActiveMode;
+
+    [Header("Score Manager Compatibility")]
+    public int levelNum = 1;
+    public string songTitle = "Standard Run";
 
     [Header("Progression Settings (P3 Default)")]
     [Tooltip("Time in seconds before the base shape changes.")]
@@ -34,8 +42,6 @@ public class GameManager : MonoBehaviour
 
     [Header("References")]
     public BaseShapeManager shapeManager;
-
-    // FIX 1: Reference type is now the correct component: Player
     private Player playerScript;
 
     private float survivalTimer = 0f;
@@ -47,8 +53,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        // 1. P4: Auto-Find the Player script in the scene
-        // FIX 2: Using the correct, non-obsolete function and looking for the correct class (Player)
+        // Auto-Find the Player script in the scene
         playerScript = FindFirstObjectByType<Player>();
         if (playerScript == null)
         {
@@ -57,7 +62,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // 2. P4: Check for custom mode settings and override defaults if found
+        // P4: Check for custom mode settings and override defaults if found
         ModeSettings modeOverride = availableModes.FirstOrDefault(m => m.mode == selectedMode);
 
         if (modeOverride.timeToNextShape != 0)
@@ -66,6 +71,9 @@ public class GameManager : MonoBehaviour
             initialRotationSpeed = modeOverride.initialRotationSpeed;
             speedIncreaseFactor = modeOverride.speedIncreaseFactor;
 
+            // Set the mode broadcast property
+            currentActiveMode = selectedMode;
+
             if (ColorCycling.Instance != null)
             {
                 ColorCycling.Instance.TriggerColorShift(modeOverride.colorPaletteIndex);
@@ -73,8 +81,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            // Default to Standard settings
+            timeToNextShape = 60f;
             initialRotationSpeed = 100f;
             speedIncreaseFactor = 1.05f;
+            currentActiveMode = GameMode.Standard;
 
             if (ColorCycling.Instance != null && ColorCycling.Instance.palettes.Length > 0)
             {

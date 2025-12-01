@@ -14,7 +14,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public TestGameManager gameManager;
+    public GameManager gameManager;
 
     [Header("Stats Pane")]
     public Transform gameoverPane;
