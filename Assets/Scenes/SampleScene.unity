@@ -4167,7 +4167,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::spawner
   spawnRate: 1
-  triPrefab: {fileID: 4385668245091891221, guid: db41eca5a421eab49b430f1d395bf634, type: 3}
+  gameManager: {fileID: 1810572696}
+  obstaclePrefabs:
+  - {fileID: 4385668245091891221, guid: db41eca5a421eab49b430f1d395bf634, type: 3}
+  - {fileID: 5920515076584966843, guid: 34b846ce046351b468691c3ce33e638e, type: 3}
+  - {fileID: 5842968105272586765, guid: 7cf3e8d6ea5ad2c4a8257a01fa0bd1c2, type: 3}
   minScaleToSpawnNext: 10
 --- !u!1 &1000562505
 GameObject:
@@ -5391,7 +5395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93dd77543a3cb1d408648337cd04a4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 1810572696}
   gameoverPane: {fileID: 741747971}
   songTitleTxt: {fileID: 1073390841}
   scoreTxt: {fileID: 1097681308}
@@ -7018,6 +7022,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   gameActive: 1
   gameOver: 0
+  currentActiveMode: 0
+  levelNum: 1
+  songTitle: Standard Run
   timeToNextShape: 60
   startingSides: 3
   maxSides: 13
@@ -7025,21 +7032,16 @@ MonoBehaviour:
   shrinkFactor: 0.95
   availableModes:
   - mode: 0
-    timeToNextShape: 0
-    initialRotationSpeed: 0
+    timeToNextShape: 60
+    initialRotationSpeed: 100
     speedIncreaseFactor: 0
     colorPaletteIndex: 0
-  - mode: 0
-    timeToNextShape: 0
-    initialRotationSpeed: 0
+  - mode: 1
+    timeToNextShape: 50
+    initialRotationSpeed: 120
     speedIncreaseFactor: 0
     colorPaletteIndex: 0
-  - mode: 0
-    timeToNextShape: 0
-    initialRotationSpeed: 0
-    speedIncreaseFactor: 0
-    colorPaletteIndex: 0
-  - mode: 0
+  - mode: 2
     timeToNextShape: 0
     initialRotationSpeed: 0
     speedIncreaseFactor: 0
