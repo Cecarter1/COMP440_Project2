@@ -443,9 +443,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1189047651}
+  - {fileID: 1058201695}
   - {fileID: 1857414038}
   - {fileID: 123593894}
-  - {fileID: 1810572697}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &163867172
@@ -3118,17 +3118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f8be5e6545ce946ba5283cf75210fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  moveSpeed: 500
-  gameManager: {fileID: 1810572696}
-  scoreManager: {fileID: 1189047652}
-  combo: 0
-  numCombo: 0
-  perfectValue: 500
-  okValue: 300
-  badValue: 100
-  perfectEffect: {fileID: 3837123825195036898, guid: 2a0e215186ee01a4ca9d4d465fbe36d5, type: 3}
-  okEffect: {fileID: 6298699558422340375, guid: 8e67a68fdaad26f4b862d2af5c1197e2, type: 3}
-  badEffect: {fileID: 5921241101083291682, guid: 28dcdbaa2feb3d24a807d40971ccaaf0, type: 3}
+  moveSpeed: 600
 --- !u!1 &859441056
 GameObject:
   m_ObjectHideFlags: 0
@@ -3554,70 +3544,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885244517}
   m_CullTransparentMesh: 1
---- !u!1 &895244379
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 895244381}
-  - component: {fileID: 895244380}
-  m_Layer: 0
-  m_Name: Color Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &895244380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 895244379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f0ef7dd94b23124994a951846f6d4a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ColorCycling
-  palettes:
-  - themeName: Crimson Grid
-    backgroundColor: {r: 0.101960786, g: 0, b: 0.009089362, a: 0}
-    primaryColor: {r: 1, g: 0.19999999, b: 0.29768562, a: 0}
-    secondaryColor: {r: 0.19999999, g: 0.82749254, b: 1, a: 0}
-  - themeName: Toxic Overload
-    backgroundColor: {r: 0.05, g: 0.15, b: 0.05, a: 0}
-    primaryColor: {r: 0.3, g: 1, b: 0.1, a: 0}
-    secondaryColor: {r: 1, g: 0.1, b: 1, a: 0}
-  - themeName: Deep Freeze
-    backgroundColor: {r: 0, g: 0.05, b: 0.15, a: 0}
-    primaryColor: {r: 0.1, g: 1, b: 1, a: 0}
-    secondaryColor: {r: 1, g: 0.5, b: 0.1, a: 0}
-  - themeName: Golden Apex
-    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
-    primaryColor: {r: 1, g: 1, b: 0.2, a: 0}
-    secondaryColor: {r: 0.5, g: 0.1, b: 1, a: 0}
-  transitionTime: 1
-  mainCamera: {fileID: 859771121}
-  shapeManager: {fileID: 123593892}
---- !u!4 &895244381
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 895244379}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 455.25, y: 186.125, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &930934607
 GameObject:
   m_ObjectHideFlags: 0
@@ -4167,11 +4093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::spawner
   spawnRate: 1
-  gameManager: {fileID: 1810572696}
-  obstaclePrefabs:
-  - {fileID: 4385668245091891221, guid: db41eca5a421eab49b430f1d395bf634, type: 3}
-  - {fileID: 5920515076584966843, guid: 34b846ce046351b468691c3ce33e638e, type: 3}
-  - {fileID: 5842968105272586765, guid: 7cf3e8d6ea5ad2c4a8257a01fa0bd1c2, type: 3}
+  triPrefab: {fileID: 4385668245091891221, guid: db41eca5a421eab49b430f1d395bf634, type: 3}
   minScaleToSpawnNext: 10
 --- !u!1 &1000562505
 GameObject:
@@ -4363,6 +4285,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000562505}
   m_CullTransparentMesh: 1
+--- !u!1 &1058201694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1058201695}
+  - component: {fileID: 1058201696}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1058201695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058201694}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 131281621}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1058201696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058201694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44f76b18a444630449266a9f7b666e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TestGameManager
+  levelNum: 1
+  songTitle: sooong
+  gameActive: 1
+  gameOver: 0
 --- !u!1 &1065564526
 GameObject:
   m_ObjectHideFlags: 0
@@ -5395,7 +5365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93dd77543a3cb1d408648337cd04a4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
-  gameManager: {fileID: 1810572696}
+  gameManager: {fileID: 1058201696}
   gameoverPane: {fileID: 741747971}
   songTitleTxt: {fileID: 1073390841}
   scoreTxt: {fileID: 1097681308}
@@ -6863,6 +6833,59 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000030518, y: -147.1}
   m_SizeDelta: {x: 500, y: 55.8}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1644526127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1644526129}
+  - component: {fileID: 1644526128}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1644526128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644526127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d7dae726182694c95c09a98d56f673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  timeToNextShape: 60
+  startingSides: 3
+  maxSides: 13
+  baseShapeRadius: 5
+  shrinkFactor: 0.95
+  availableModes: []
+  selectedMode: 1
+  shapeManager: {fileID: 123593892}
+  playerScript: {fileID: 816262090}
+--- !u!4 &1644526129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644526127}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 455.25, y: 186.125, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1685569449
 GameObject:
   m_ObjectHideFlags: 0
@@ -6991,78 +7014,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -51.199997}
   m_SizeDelta: {x: 500, y: 136}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1810572695
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1810572697}
-  - component: {fileID: 1810572696}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1810572696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810572695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5d7dae726182694c95c09a98d56f673, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  gameActive: 1
-  gameOver: 0
-  currentActiveMode: 0
-  levelNum: 1
-  songTitle: Standard Run
-  timeToNextShape: 60
-  startingSides: 3
-  maxSides: 13
-  baseShapeRadius: 2
-  shrinkFactor: 0.95
-  availableModes:
-  - mode: 0
-    timeToNextShape: 60
-    initialRotationSpeed: 100
-    speedIncreaseFactor: 0
-    colorPaletteIndex: 0
-  - mode: 1
-    timeToNextShape: 50
-    initialRotationSpeed: 120
-    speedIncreaseFactor: 0
-    colorPaletteIndex: 0
-  - mode: 2
-    timeToNextShape: 0
-    initialRotationSpeed: 0
-    speedIncreaseFactor: 0
-    colorPaletteIndex: 0
-  selectedMode: 0
-  shapeManager: {fileID: 123593892}
---- !u!4 &1810572697
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810572695}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1324, y: -0.5377, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 131281621}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1843625650
 GameObject:
   m_ObjectHideFlags: 0
@@ -7596,6 +7547,70 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026084473}
   m_CullTransparentMesh: 1
+--- !u!1 &2036653076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2036653078}
+  - component: {fileID: 2036653077}
+  m_Layer: 0
+  m_Name: ColorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2036653077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036653076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0ef7dd94b23124994a951846f6d4a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColorCycling
+  palettes:
+  - themeName: Crimson Grid
+    backgroundColor: {r: 0.1, g: 0, b: 0.1, a: 0}
+    primaryColor: {r: 1, g: 0.2, b: 0.8, a: 0}
+    secondaryColor: {r: 0.2, g: 1, b: 1, a: 0}
+  - themeName: Toxic Overload
+    backgroundColor: {r: 0.05, g: 0.15, b: 0.05, a: 0}
+    primaryColor: {r: 0.3, g: 1, b: 0.1, a: 0}
+    secondaryColor: {r: 1, g: 0.1, b: 1, a: 0}
+  - themeName: Deep Freeze
+    backgroundColor: {r: 0, g: 0.05, b: 0.15, a: 0}
+    primaryColor: {r: 0.1, g: 1, b: 1, a: 0}
+    secondaryColor: {r: 1, g: 0.5, b: 0.1, a: 0}
+  - themeName: Golden Apex
+    backgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    primaryColor: {r: 1, g: 1, b: 0.2, a: 0}
+    secondaryColor: {r: 0.5, g: 0.1, b: 1, a: 0}
+  transitionTime: 1
+  mainCamera: {fileID: 859771121}
+  shapeManager: {fileID: 123593892}
+--- !u!4 &2036653078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036653076}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 455.25, y: 186.125, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2051951488
 GameObject:
   m_ObjectHideFlags: 0
@@ -8094,4 +8109,5 @@ SceneRoots:
   - {fileID: 131281621}
   - {fileID: 374504940}
   - {fileID: 2129453872}
-  - {fileID: 895244381}
+  - {fileID: 2036653078}
+  - {fileID: 1644526129}

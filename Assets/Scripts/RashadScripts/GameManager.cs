@@ -1,9 +1,23 @@
 using UnityEngine;
+using System.Linq;
 using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Progression Settings")]
+    // FIX: Added required public state variables for Player collision logic (Teammate's requirement)
+    [Header("Game State")]
+    public bool gameActive = true;
+    public bool gameOver = false;
+
+    // FIX: Added public property to broadcast the active mode to the Spawner/Obstacles
+    [HideInInspector] // Hide in inspector since we don't change this manually
+    public GameMode currentActiveMode;
+
+    [Header("Score Manager Compatibility")]
+    public int levelNum = 1;
+    public string songTitle = "Standard Run";
+
+    [Header("Progression Settings (P3 Default)")]
     [Tooltip("Time in seconds before the base shape changes.")]
     public float timeToNextShape = 60f;
     [Tooltip("Starting number of sides for the Base Shape (Triangle).")]
@@ -17,51 +31,105 @@ public class GameManager : MonoBehaviour
     [Tooltip("The factor by which the radius shrinks each phase (e.g., 0.95 = 5% shrink).")]
     public float shrinkFactor = 0.95f;
 
+    [Header("Challenge Variety (P4)")]
+    [Tooltip("Define all tuning parameters for each mode.")]
+    public ModeSettings[] availableModes;
+
+    public GameMode selectedMode = GameMode.Standard;
+
+    private float initialRotationSpeed = 100f;
+    private float speedIncreaseFactor = 1.05f;
+
     [Header("References")]
     public BaseShapeManager shapeManager;
+    private Player playerScript;
 
     private float survivalTimer = 0f;
     private int currentPhase = 0;
     private float nextShapeTime;
 
-    public static int CurrentSides { get; private set; }
+    public int CurrentSides { get; private set; } = 3;
 
-    void Start()
+
+    void Awake()
     {
-        // 1. Initial Setup and Safety Check
-        if (shapeManager == null)
+        // Auto-Find the Player script in the scene
+        playerScript = FindFirstObjectByType<Player>();
+        if (playerScript == null)
         {
-            Debug.LogError("BaseShapeManager reference is missing on GameManager!");
+            Debug.LogError("FATAL ERROR: Could not find Player component (Player.cs) in the scene! Cannot initialize game.");
             enabled = false;
             return;
         }
 
-        // 2. Initialize the game state
-        CurrentSides = startingSides;
+        // P4: Check for custom mode settings and override defaults if found
+        ModeSettings modeOverride = availableModes.FirstOrDefault(m => m.mode == selectedMode);
 
-        // Use the new method signature to set the initial shape and radius
-        shapeManager.GenerateNewShape(CurrentSides, baseShapeRadius);
+        if (modeOverride.timeToNextShape != 0)
+        {
+            timeToNextShape = modeOverride.timeToNextShape;
+            initialRotationSpeed = modeOverride.initialRotationSpeed;
+            speedIncreaseFactor = modeOverride.speedIncreaseFactor;
+
+            // Set the mode broadcast property
+            currentActiveMode = selectedMode;
+
+            if (ColorCycling.Instance != null)
+            {
+                ColorCycling.Instance.TriggerColorShift(modeOverride.colorPaletteIndex);
+            }
+        }
+        else
+        {
+            // Default to Standard settings
+            timeToNextShape = 60f;
+            initialRotationSpeed = 100f;
+            speedIncreaseFactor = 1.05f;
+            currentActiveMode = GameMode.Standard;
+
+            if (ColorCycling.Instance != null && ColorCycling.Instance.palettes.Length > 0)
+            {
+                ColorCycling.Instance.TriggerColorShift(0);
+            }
+        }
+    }
+
+
+    void Start()
+    {
+        if (shapeManager == null)
+        {
+            Debug.LogError("BaseShapeManager reference is missing! Drag BaseShape into the slot.");
+            enabled = false;
+            return;
+        }
+
+        gameActive = true;
+        gameOver = false;
+
+        CurrentSides = startingSides;
         nextShapeTime = timeToNextShape;
 
-        Debug.Log("Game Started. Current Shape: Triangle.");
+        shapeManager.rotationSpeed = initialRotationSpeed;
+        shapeManager.GenerateNewShape(CurrentSides, baseShapeRadius);
+
+        playerScript.SetOrbitRadius(baseShapeRadius);
     }
 
     void Update()
     {
-        // 1. Survival Time Tracking (for Caitlyn's scoring)
-        survivalTimer += Time.deltaTime;
-
-        // 2. Shape Progression Check
-        if (survivalTimer >= nextShapeTime)
+        if (gameActive && !gameOver)
         {
-            ProgressToNextShape();
-            nextShapeTime = survivalTimer + timeToNextShape;
+            survivalTimer += Time.deltaTime;
+
+            if (survivalTimer >= nextShapeTime)
+            {
+                ProgressToNextShape();
+                nextShapeTime = survivalTimer + timeToNextShape;
+            }
         }
     }
 
-    /// <summary>
-    /// Changes the base shape to the next level of difficulty (a. & b.)
-    /// </summary>
     public void ProgressToNextShape()
     {
         if (CurrentSides < maxSides)
@@ -69,34 +137,41 @@ public class GameManager : MonoBehaviour
             CurrentSides++;
             currentPhase++;
 
-            // Calculate the new radius, shrinking it based on the number of phases passed.
-            // This progressively reduces the player's available movement distance.
+            shapeManager.rotationSpeed *= speedIncreaseFactor;
+
             float newRadius = baseShapeRadius * Mathf.Pow(shrinkFactor, currentPhase);
 
-            // Trigger the shape change and smooth resize
             shapeManager.GenerateNewShape(CurrentSides, newRadius);
+            playerScript.SetOrbitRadius(newRadius);
 
-            // Optional: You can also increase the rotation speed here for difficulty scaling
-            shapeManager.rotationSpeed *= 1.05f;
-
-            Debug.Log($"PROGRESSION: Shape changed to {CurrentSides} sides (Phase {currentPhase + 1}). New Radius: {newRadius:F2}");
+            if (ColorCycling.Instance != null && ColorCycling.Instance.palettes.Length > 0)
+            {
+                int nextPaletteIndex = currentPhase % ColorCycling.Instance.palettes.Length;
+                ColorCycling.Instance.TriggerColorShift(nextPaletteIndex);
+            }
         }
         else
         {
-            // Once max sides is reached, only speed and rotation increase
-            Debug.Log("MAX SIDES REACHED. Increasing difficulty parameters...");
-            shapeManager.rotationSpeed *= 1.1f;
+            shapeManager.rotationSpeed *= speedIncreaseFactor * 1.1f;
         }
     }
 
-    // Public method to reset the game state on Game Over (Ahmad's task)
     public void ResetGame()
     {
+        gameActive = true;
+        gameOver = false;
+
         survivalTimer = 0f;
         currentPhase = 0;
         CurrentSides = startingSides;
         nextShapeTime = timeToNextShape;
-        shapeManager.rotationSpeed = 100f; // Reset to initial speed
+        shapeManager.rotationSpeed = initialRotationSpeed;
         shapeManager.GenerateNewShape(CurrentSides, baseShapeRadius);
+        playerScript.SetOrbitRadius(baseShapeRadius);
+    }
+
+    public void SetGameMode(GameMode newMode)
+    {
+        selectedMode = newMode;
     }
 }
