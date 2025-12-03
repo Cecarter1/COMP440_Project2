@@ -7034,19 +7034,19 @@ MonoBehaviour:
   - mode: 0
     timeToNextShape: 60
     initialRotationSpeed: 100
-    speedIncreaseFactor: 0
+    speedIncreaseFactor: 1.05
     colorPaletteIndex: 0
   - mode: 1
-    timeToNextShape: 50
-    initialRotationSpeed: 120
-    speedIncreaseFactor: 0
-    colorPaletteIndex: 0
-  - mode: 2
     timeToNextShape: 0
     initialRotationSpeed: 0
     speedIncreaseFactor: 0
     colorPaletteIndex: 0
-  selectedMode: 0
+  - mode: 2
+    timeToNextShape: 40
+    initialRotationSpeed: 150
+    speedIncreaseFactor: 1.1
+    colorPaletteIndex: 3
+  selectedMode: 1
   shapeManager: {fileID: 123593892}
 --- !u!4 &1810572697
 Transform:
