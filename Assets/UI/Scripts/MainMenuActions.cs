@@ -5,12 +5,12 @@ public class MainMenuActions : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("InstructionsScene");
+        SceneManager.LoadScene("PreGameScene");
     }
 
     public void OpenHighScores()
     {
-        SceneManager.LoadScene("HighScoreScene");
+        SceneManager.LoadScene("HighScoreScene");  // Only if HighScoreScene actually exists
     }
 
     public void QuitGame()
