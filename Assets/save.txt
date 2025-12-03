@@ -1,1 +1,1 @@
-{"highscoreEntryList":[{"name":"aaa","grade":"n","score":0,"finalScore":0,"maxCombo":0,"accuracy":0},{"name":"aaa​","grade":"n","score":0,"finalScore":0,"maxCombo":0,"accuracy":0},{"name":"aaa","grade":"n","score":0,"finalScore":0,"maxCombo":0,"accuracy":0}]}
+{"highscoreEntryList":[{"name":"ajt​","grade":"F","score":8500,"finalScore":10100,"maxCombo":4,"accuracy":80.95237731933594},{"name":"aaa​","grade":"F","score":7200,"finalScore":8200,"maxCombo":5,"accuracy":72.0},{"name":"aaa","grade":"n","score":0,"finalScore":0,"maxCombo":0,"accuracy":0.0}]}

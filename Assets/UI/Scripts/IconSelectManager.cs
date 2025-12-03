@@ -26,6 +26,6 @@ public class IconSelectionManager : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene("AhmadSampleScene");
     }
 }
