@@ -14,7 +14,7 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public GameManager gameManager;
+    public TestGameManager gameManager;
 
     [Header("Stats Pane")]
     public Transform gameoverPane;
@@ -45,7 +45,20 @@ public class ScoreManager : MonoBehaviour
     public int highscoreIndex; // Location of highscore on leaderboard
     public bool nameSet = true; // Player name has been set on leaderboard
 
-    public int comboValue = 200;
+    private int comboValue = 200;
+
+    [Header("Menu Highscore Pane")]
+    public List<LevelDataSO> levels;
+    public Transform menuHighscorePane;
+    public Button[] buttons;
+    public TMP_Text lvlSongTxt;
+    public TMP_Text difficultyTxt;
+    public TMP_Text durationTxt;
+    public TMP_Text bpmTxt;
+
+    [Header("Menu Leaderboard")]
+    public Transform[] menuLeaderboardEntries;
+    private List<Highscore> menuHighscores;
 
     private void Start()
     {
@@ -55,6 +68,7 @@ public class ScoreManager : MonoBehaviour
         nameSet = true;
     }
 
+    #region Scoring
     // Adds scoreToAdd points to the score and final score
     public void AddScore(int scoreToAdd)
     {
@@ -73,7 +87,9 @@ public class ScoreManager : MonoBehaviour
             maxCombo = numCombo;
         }
     }
+    #endregion
 
+    #region Round Scoring UI
     // When the player hits a hexagon, stats are calculated, the stats pane is populated, and the leaderboard is updated.
     public void GameOver()
     {
@@ -195,27 +211,6 @@ public class ScoreManager : MonoBehaviour
         Debug.Log("Highscore!");
     }
 
-    // Saves the highscores to a save file using JSon
-    public void SaveHighscores()
-    {
-        Highscores testHighscores = new Highscores {highscoreEntryList = highscores};
-
-        string json = JsonUtility.ToJson(testHighscores);
-        File.WriteAllText(Application.dataPath + "/save.txt", json);
-    }
-
-    // Loads the highscore from the save file using JSon
-    public void LoadHighscores()
-    {
-        if(File.Exists(Application.dataPath + "/save.txt"))
-        {
-            string saveString = File.ReadAllText(Application.dataPath + "/save.txt");
-
-            Highscores highscoresList = JsonUtility.FromJson<Highscores>(saveString);
-            highscores = highscoresList.highscoreEntryList;
-        }
-    }
-
     // Button handler for "Main Menu" button
     public void MainMenu()
     {
@@ -256,10 +251,82 @@ public class ScoreManager : MonoBehaviour
         highscores[highscoreIndex].name = leaderboardEntries[highscoreIndex].Find("Name").Find("Text Area").Find("Text").GetComponent<TMP_Text>().text;
         SaveHighscores();
     }
+    #endregion
 
-    // Helper classes
-    // Represents the leaderboard
-    private class Highscores
+    #region Saving & Loading Highscores
+    // Saves the highscores to a save file using JSon
+    public void SaveHighscores()
+    {
+        Highscores testHighscores = new Highscores {highscoreEntryList = highscores};
+
+        string json = JsonUtility.ToJson(testHighscores);
+        File.WriteAllText(Application.dataPath + "/save.txt", json);
+    }
+
+    // Loads the highscore from the save file using JSon
+    public void LoadHighscores()
+    {
+        if(File.Exists(Application.dataPath + "/save.txt"))
+        {
+            string saveString = File.ReadAllText(Application.dataPath + "/save.txt");
+
+            Highscores highscoresList = JsonUtility.FromJson<Highscores>(saveString);
+            highscores = highscoresList.highscoreEntryList;
+        }
+    }
+    #endregion
+
+    #region Highscore Menu
+    // Load all level data
+    public void LoadAllLevelData()
+    {
+        if (File.Exists(Application.dataPath + "/LevelData.txt"))
+        {
+            string saveString = File.ReadAllText(Application.dataPath + "/LevelData.txt");
+
+            Levels allLevelData = JsonUtility.FromJson<Levels>(saveString);
+            levels = allLevelData.levelsData;
+        }
+    }
+
+    // Save all level data
+    public void SaveAllLevelData()
+    {
+        Levels testLevels = new Levels { levelsData = levels };
+
+        string json = JsonUtility.ToJson(testLevels);
+        File.WriteAllText(Application.dataPath + "/LevelData.txt", json);
+    }
+
+    // Populate Menu Highscore Page
+    public void PopulateHighscoreMenu(LevelDataSO levelData)
+    {
+        lvlSongTxt.text = "Level " + levelData.levelNum + " - " + levelData.songTitle;
+        difficultyTxt.text = "Difficulty:\n" + levelData.difficulty;
+        durationTxt.text = "Duration:\n" + levelData.duration;
+        bpmTxt.text = "BPM:\n" + levelData.bpm;
+
+        // Populate leaderboard
+        for (int i = 0; i < menuLeaderboardEntries.Length; i++)
+        {
+            menuLeaderboardEntries[i].Find("Name").GetComponent<TMP_Text>().text = levelData.leaderboard.highscoreEntryList[i].name;
+            menuLeaderboardEntries[i].Find("Grade").GetComponent<TMP_Text>().text = levelData.leaderboard.highscoreEntryList[i].grade;
+            menuLeaderboardEntries[i].Find("Final Score").GetComponent<TMP_Text>().text = levelData.leaderboard.highscoreEntryList[i].finalScore.ToString();
+            menuLeaderboardEntries[i].Find("Combo").GetComponent<TMP_Text>().text = levelData.leaderboard.highscoreEntryList[i].maxCombo.ToString();
+            menuLeaderboardEntries[i].Find("Accuracy").GetComponent<TMP_Text>().text = string.Format("{0:#.0}", levelData.leaderboard.highscoreEntryList[i].accuracy.ToString()) + "%";
+        }
+    }
+    #endregion
+
+    #region Helper Classes
+    // Represents the data of each level
+    public class Levels
+    {
+        public List<LevelDataSO> levelsData;
+    }
+
+    // Represents a single leaderboard
+    public class Highscores
     {
         public List<Highscore> highscoreEntryList;
 
@@ -267,7 +334,7 @@ public class ScoreManager : MonoBehaviour
         {
             string highschoreTable = "";
 
-            foreach(Highscore highscore in highscoreEntryList)
+            foreach (Highscore highscore in highscoreEntryList)
             {
                 highschoreTable += highscore.ToString() + ";";
             }
@@ -276,9 +343,10 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+
     // Represents a single highscore entry on the leaderboard
     [System.Serializable]
-    private class Highscore
+    public class Highscore
     {
         public string name;
         public string grade;
@@ -297,4 +365,5 @@ public class ScoreManager : MonoBehaviour
             accuracy = 0;
         }
     }
+    #endregion
 }
