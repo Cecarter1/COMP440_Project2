@@ -5419,7 +5419,14 @@ MonoBehaviour:
   highscoreSet: 0
   highscoreIndex: 0
   nameSet: 0
-  comboValue: 200
+  levels: []
+  menuHighscorePane: {fileID: 0}
+  buttons: []
+  lvlSongTxt: {fileID: 0}
+  difficultyTxt: {fileID: 0}
+  durationTxt: {fileID: 0}
+  bpmTxt: {fileID: 0}
+  menuLeaderboardEntries: []
 --- !u!1 &1208066497
 GameObject:
   m_ObjectHideFlags: 0
