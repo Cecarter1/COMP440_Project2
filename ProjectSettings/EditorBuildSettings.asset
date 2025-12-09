@@ -11,6 +11,24 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/UI/HUD/HUD_Scene.unity
     guid: c8e3daa0e50ecde4c98cb8d52bccfb29
+  - enabled: 1
+    path: Assets/Scenes/moisesScenes/LevelSelect.unity
+    guid: e9a635b20a15bed408dad8356c486c6b
+  - enabled: 1
+    path: Assets/Scenes/moisesScenes/triangle.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/moisesScenes/square.unity
+    guid: 4aa6d21c651ca384e9b526629f17bf06
+  - enabled: 1
+    path: Assets/Scenes/moisesScenes/pentagon.unity
+    guid: 48598b96e6d9c7343b67370dbc50c941
+  - enabled: 1
+    path: Assets/Scenes/moisesScenes/hexagon.unity
+    guid: 2cfe72e2f290781459d2f2b0ef79aada
+  - enabled: 1
+    path: Assets/Scenes/moisesScenes/heptagon.unity
+    guid: 285330ef56f975747800fd7eea75bf99
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
