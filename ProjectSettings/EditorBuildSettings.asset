@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/moisesScenes/NewLVLPrefabs/hexagon lvl 4 (Hard).unity
     guid: 2cfe72e2f290781459d2f2b0ef79aada
   - enabled: 1
-    path: Assets/Scenes/moisesScenes/heptagon.unity
+    path: Assets/Scenes/moisesScenes/NewLVLPrefabs/heptagon lvl5 (Hard).unity
     guid: 285330ef56f975747800fd7eea75bf99
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
