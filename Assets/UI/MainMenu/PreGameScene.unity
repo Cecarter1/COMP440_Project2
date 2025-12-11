@@ -1307,9 +1307,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "                           HOW TO PLAY\r\n\r\nUse A / Left Arrow to rotate
-    counter-clockwise\r\nUse D / Right Arrow to rotate clockwise\r\nStay aligned
-    with the moving gap\r\nOne hit = Game Over\r\nSurvive as long as possible\r\n\n      
-    REMEMBER DO NOT HIT THE WALLS"
+    counter-clockwise\r\nUse D / Right Arrow to rotate clockwise\nPress Spacebar
+    for a powerup\r\nStay aligned with the moving gap\r\nOne hit = Game Over\r\nSurvive
+    as long as possible\r\n\n       REMEMBER DO NOT HIT THE WALLS"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
