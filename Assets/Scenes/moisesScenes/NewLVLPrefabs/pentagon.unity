@@ -404,7 +404,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   spawnRate: 1
-  triPrefab: {fileID: 5842968105272586765, guid: 7cf3e8d6ea5ad2c4a8257a01fa0bd1c2, type: 3}
+  gameManager: {fileID: 0}
+  obstaclePrefabs: []
   minScaleToSpawnNext: 5
 --- !u!4 &1700865433
 Transform:
@@ -465,7 +466,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 1a4dbca40fcd8dd4cbbb9a7ec05da874, type: 3}
+  m_Resource: {fileID: 8300000, guid: f2c713200342417448efd7106675f24e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -598,6 +599,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   moveSpeed: 600
+  gameManager: {fileID: 0}
+  scoreManager: {fileID: 0}
+  combo: 0
+  numCombo: 0
+  perfectValue: 500
+  okValue: 300
+  badValue: 100
+  perfectEffect: {fileID: 0}
+  okEffect: {fileID: 0}
+  badEffect: {fileID: 0}
 --- !u!64 &2000109032
 MeshCollider:
   m_ObjectHideFlags: 0

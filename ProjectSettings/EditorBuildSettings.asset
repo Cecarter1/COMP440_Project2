@@ -38,6 +38,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/moisesScenes/NewLVLPrefabs/heptagon.unity
     guid: 285330ef56f975747800fd7eea75bf99
+  - enabled: 1
+    path: Assets/Scenes/moisesScenes/NewLVLPrefabs/octagon.unity
+    guid: eacb80bcbf1d1d541bf4e4ea07a474e3
+  - enabled: 1
+    path: Assets/Scenes/moisesScenes/NewLVLPrefabs/nonagon.unity
+    guid: e204ccda8e02a4a4fa946e277a9874cd
+  - enabled: 1
+    path: Assets/Scenes/moisesScenes/NewLVLPrefabs/decagon.unity
+    guid: ec7408b3240569445be1bc1d745ed0cf
+  - enabled: 1
+    path: Assets/Scenes/moisesScenes/NewLVLPrefabs/hendecagon.unity
+    guid: fc4675d4353917e428640d0449e7ca58
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

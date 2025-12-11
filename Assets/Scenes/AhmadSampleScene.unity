@@ -347,7 +347,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.1990051
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -5807,7 +5807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93dd77543a3cb1d408648337cd04a4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
-  gameManager: {fileID: 1810572696}
+  gameManager: {fileID: 0}
   gameoverPane: {fileID: 741747971}
   songTitleTxt: {fileID: 1073390841}
   scoreTxt: {fileID: 1097681308}
@@ -5831,7 +5831,14 @@ MonoBehaviour:
   highscoreSet: 0
   highscoreIndex: 0
   nameSet: 0
-  comboValue: 200
+  levels: []
+  menuHighscorePane: {fileID: 0}
+  buttons: []
+  lvlSongTxt: {fileID: 0}
+  difficultyTxt: {fileID: 0}
+  durationTxt: {fileID: 0}
+  bpmTxt: {fileID: 0}
+  menuLeaderboardEntries: []
 --- !u!1 &1208066497
 GameObject:
   m_ObjectHideFlags: 0

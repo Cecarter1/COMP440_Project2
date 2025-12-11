@@ -280,6 +280,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   moveSpeed: 600
+  gameManager: {fileID: 0}
+  scoreManager: {fileID: 0}
+  combo: 0
+  numCombo: 0
+  perfectValue: 500
+  okValue: 300
+  badValue: 100
+  perfectEffect: {fileID: 0}
+  okEffect: {fileID: 0}
+  badEffect: {fileID: 0}
 --- !u!64 &1209868342
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -527,7 +537,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   spawnRate: 1
-  triPrefab: {fileID: 189176867546328059, guid: 72b090679b1ab504b8c4bd4251d413f5, type: 3}
+  gameManager: {fileID: 0}
+  obstaclePrefabs: []
   minScaleToSpawnNext: 5
 --- !u!4 &1915763242
 Transform:
@@ -592,7 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586f6804e1fe1024286bdb87a08c3598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::cameraRotator
-  minSpeed: 100
+  minSpeed: 120
   maxSpeed: 200
   interval: 6
 --- !u!114 &2140386940

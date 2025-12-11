@@ -25,8 +25,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        // Continuous Rotation Input
-        movement = Input.GetAxis("Horizontal");
+        // Continuous Rotation Input (Raw for snappier, less glidy movement)
+        movement = Input.GetAxisRaw("Horizontal");
 
         // P4: Ensure the player always faces away from the center of the shape
         transform.up = transform.position.normalized;

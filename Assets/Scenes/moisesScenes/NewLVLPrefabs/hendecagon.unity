@@ -147,7 +147,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 26752195d9d03304aaa99edde6d31cf9, type: 3}
+  m_Resource: {fileID: 8300000, guid: f50ca0cadf3cfcc4a97b03435ea380c1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -280,6 +280,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   moveSpeed: 600
+  gameManager: {fileID: 0}
+  scoreManager: {fileID: 0}
+  combo: 0
+  numCombo: 0
+  perfectValue: 500
+  okValue: 300
+  badValue: 100
+  perfectEffect: {fileID: 0}
+  okEffect: {fileID: 0}
+  badEffect: {fileID: 0}
 --- !u!64 &1253340495
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -407,8 +417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586f6804e1fe1024286bdb87a08c3598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::cameraRotator
-  minSpeed: 150
-  maxSpeed: 225
+  minSpeed: 175
+  maxSpeed: 250
   interval: 5
 --- !u!114 &1331498145
 MonoBehaviour:
@@ -728,7 +738,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   spawnRate: 1
-  triPrefab: {fileID: 189176867546328059, guid: 72b090679b1ab504b8c4bd4251d413f5, type: 3}
+  gameManager: {fileID: 0}
+  obstaclePrefabs: []
   minScaleToSpawnNext: 5
 --- !u!4 &1514796638
 Transform:

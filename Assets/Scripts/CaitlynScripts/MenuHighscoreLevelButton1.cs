@@ -51,6 +51,22 @@ public class MenuHighscoreLevelButton : MonoBehaviour
             case 5:
                 LoadLevel("heptagon");
                 return;
+
+            case 6:
+                LoadLevel("octagon");
+                return;
+
+            case 7:
+                LoadLevel("nonagon");
+                return;
+
+            case 8:
+                LoadLevel("decagon");
+                return;
+
+            case 9:
+                LoadLevel("hendecagon");
+                return;
         }
 
         // -------------------------------
