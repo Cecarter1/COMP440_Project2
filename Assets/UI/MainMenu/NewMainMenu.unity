@@ -1410,7 +1410,7 @@ GameObject:
   - component: {fileID: 1218710442}
   - component: {fileID: 1218710441}
   m_Layer: 5
-  m_Name: HighScoresButton
+  m_Name: LevelSelectButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1482,7 +1482,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 169290833}
         m_TargetAssemblyTypeName: MainMenuActions, Assembly-CSharp
-        m_MethodName: OpenHighScores
+        m_MethodName: OpenLevelSelect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1578,7 +1578,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -32.5, y: -25.000046}
+  m_AnchoredPosition: {x: -32.5, y: -25}
   m_SizeDelta: {x: -395, y: -649.9999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1332710809
@@ -1970,7 +1970,7 @@ GameObject:
   - component: {fileID: 2070029779}
   - component: {fileID: 2070029778}
   m_Layer: 5
-  m_Name: High Scores
+  m_Name: LevelSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2015,7 +2015,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: HIGH SCORES
+  m_text: SELECT LEVEL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}

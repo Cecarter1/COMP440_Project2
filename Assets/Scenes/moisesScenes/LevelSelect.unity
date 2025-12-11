@@ -526,6 +526,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32252225}
   m_CullTransparentMesh: 1
+--- !u!1 &37553615 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2523488198674585248, guid: 91a2b9b5617bcee428b01dfb2b76a5e8, type: 3}
+  m_PrefabInstance: {fileID: 1881214029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &64935055 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8691640720635358067, guid: 91a2b9b5617bcee428b01dfb2b76a5e8, type: 3}
+  m_PrefabInstance: {fileID: 1881214029}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &84120316
 GameObject:
   m_ObjectHideFlags: 0
@@ -6367,6 +6377,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1712053261}
   m_CullTransparentMesh: 1
+--- !u!114 &1743678194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64935055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0799cc32e14ac2c459f93ce39b54e08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuHighscoreLevelButton
+  scoreManager: {fileID: 1472503205}
+  levelData: {fileID: 11400000, guid: 41d008dc703073446ae750836e4f11ac, type: 2}
+  menuCanvas: {fileID: 2075657756}
 --- !u!1 &1773014307
 GameObject:
   m_ObjectHideFlags: 0
@@ -7157,6 +7182,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6365489900026548461, guid: 91a2b9b5617bcee428b01dfb2b76a5e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1881214049}
+    - target: {fileID: 6365489900026548461, guid: 91a2b9b5617bcee428b01dfb2b76a5e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LevelButtonHandler
+      objectReference: {fileID: 0}
     - target: {fileID: 6377060970564863676, guid: 91a2b9b5617bcee428b01dfb2b76a5e8, type: 3}
       propertyPath: m_Name
       value: High Score Pane
@@ -7233,6 +7266,14 @@ PrefabInstance:
       propertyPath: menuCanvas
       value: 
       objectReference: {fileID: 2075657756}
+    - target: {fileID: 7482833768252673386, guid: 91a2b9b5617bcee428b01dfb2b76a5e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 64935055}
+    - target: {fileID: 7482833768252673386, guid: 91a2b9b5617bcee428b01dfb2b76a5e8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7866863259541094016, guid: 91a2b9b5617bcee428b01dfb2b76a5e8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7477,10 +7518,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8117257618132060625, guid: 91a2b9b5617bcee428b01dfb2b76a5e8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2523488198674585248, guid: 91a2b9b5617bcee428b01dfb2b76a5e8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1881214049}
+    - targetCorrespondingSourceObject: {fileID: 8691640720635358067, guid: 91a2b9b5617bcee428b01dfb2b76a5e8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1743678194}
   m_SourcePrefab: {fileID: 100100000, guid: 91a2b9b5617bcee428b01dfb2b76a5e8, type: 3}
 --- !u!224 &1881214030 stripped
 RectTransform:
@@ -7645,7 +7693,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7482833768252673386, guid: 91a2b9b5617bcee428b01dfb2b76a5e8, type: 3}
   m_PrefabInstance: {fileID: 1881214029}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 64935055}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -7656,7 +7704,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6365489900026548461, guid: 91a2b9b5617bcee428b01dfb2b76a5e8, type: 3}
   m_PrefabInstance: {fileID: 1881214029}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 37553615}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -7667,6 +7715,21 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8972947239033842351, guid: 91a2b9b5617bcee428b01dfb2b76a5e8, type: 3}
   m_PrefabInstance: {fileID: 1881214029}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1881214049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37553615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0799cc32e14ac2c459f93ce39b54e08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuHighscoreLevelButton
+  scoreManager: {fileID: 1472503205}
+  levelData: {fileID: 11400000, guid: 8d875a90e09658947b1b4b60707fd3a1, type: 2}
+  menuCanvas: {fileID: 2075657756}
 --- !u!1 &1887949134
 GameObject:
   m_ObjectHideFlags: 0

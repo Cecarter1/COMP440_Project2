@@ -8,9 +8,9 @@ public class MainMenuActions : MonoBehaviour
         SceneManager.LoadScene("PreGameScene");
     }
 
-    public void OpenHighScores()
+    public void OpenLevelSelect()
     {
-        SceneManager.LoadScene("HighScoreScene");  // Only if HighScoreScene actually exists
+        SceneManager.LoadScene("LevelSelect");
     }
 
     public void QuitGame()
